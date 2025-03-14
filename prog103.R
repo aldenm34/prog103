@@ -38,9 +38,8 @@ hours_cold_per_day
 # P3 Write a function to encapsulate the code chunk above. Check that it
 # contains all five parts of a function.
 
+
 hours_cold_per_day <- function(site, season) {
-  site <- "Nuka_Pass"
-  season <- "Late winter"
   n_cold <- sum(kefj_site == site &
                   kefj_season == season &
                   kefj_temperature <= -4 &
@@ -53,9 +52,10 @@ hours_cold_per_day <- function(site, season) {
   return(hours_cold_per_day_function)
 }
 
-hours_cold_per_day("Nuka_Pass", "Late Winter")
+hours_cold_per_day("Harris", "Spring")
 
-
+?kefj_season
+?kefj_site
 
 # Make an extreme choice --------------------------------------------------
 
@@ -90,7 +90,6 @@ hours_extreme_per_day
 
 # P6 Copy-paste the function you wrote in P3 and edit it to add a parameter that
 # lets you switch between extreme heat and cold exposure.
-
 extremehours_perday <- function(site, season, extreme_type) {
   if (extreme_type == "cold") {
     is_extreme <- kefj_temperature <= -4
@@ -99,7 +98,7 @@ extremehours_perday <- function(site, season, extreme_type) {
   }
   n_extreme_function <- sum(kefj_site == site &
                   kefj_season == season &
-                  is_extreme <= TRUE &
+                  is_extreme &
                   kefj_exposure == "air")
   n_total_function <- sum(kefj_site == site &
                    kefj_season == season)
@@ -109,7 +108,7 @@ extremehours_perday <- function(site, season, extreme_type) {
   return(hours_extreme_per_day_function)
 }
 
-extremehours_perday("Nuka_Pass", "Late Winter", "heat")
+extremehours_perday("Nuka_Pass", "Late winter", "cold")
 
 
 # Season to taste ---------------------------------------------------------
@@ -117,13 +116,13 @@ extremehours_perday("Nuka_Pass", "Late Winter", "heat")
 # P7 What seasons are in the kefj dataset? What function would you use to
 # identify them?
 ?kefj_season
-# Late winter, Spring, Summer, Fall, Early Winter
+# Late winter, Spring, Summer, Fall, Early winter
 
 # P8 Fill in the blanks below to make a for loop that prints the extreme hot and
 # cold exposure across seasons at site Aialik.
 
-seasons <- c("Late winter", "Spring", "Summer", "Fall", "Early Winter")
-  for (i in 1: lenth(seasons)) {
+seasons <- c("Late winter", "Spring", "Summer", "Fall", "Early winter")
+  for (i in 1: length(seasons)) {
     heat_exposure <- extremehours_perday(site, seasons[i], "hot")
     cold_exposure <- extremehours_perday(site, seasons[i], "cold")
     print(paste("Aialik", seasons[i], heat_exposure, cold_exposure))
@@ -132,7 +131,7 @@ seasons <- c("Late winter", "Spring", "Summer", "Fall", "Early Winter")
 # P9 Copy-paste your answer to P8 and add a nested for loop to iterate across
 # sites as well as seasons.
 
-seasons <- c("Late winter", "Spring", "Summer", "Fall", "Early Winter")
+seasons <- c("Late winter", "Spring", "Summer", "Fall", "Early winter")
 site <- c("Aialik", "Nuka_Pass", "Harris", "McCarty", "Nuka_Bay")
 for (i in 1: length(seasons)) {
   for (j in 1:length(site))
@@ -146,7 +145,7 @@ for (i in 1: length(seasons)) {
 # extreme heat and cold exposure were 0. What season were they in?
 
 # Nuka_Bay Fall
-#Harris Fall
+# Harris Fall
 
 
 
